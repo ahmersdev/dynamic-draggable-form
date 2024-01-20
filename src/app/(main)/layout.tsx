@@ -17,10 +17,10 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
         }}
       >
         <Grid container>
-          <Grid item xxs={0} md={2} height={"100vh"} overflow={"hidden"}>
+          <Grid item xs={0} md={2} height={"100vh"} overflow={"hidden"}>
             <Navbar />
           </Grid>
-          <Grid item xxs={12} md={10} p={2} height={"100vh"} overflow={"auto"}>
+          <Grid item xs={12} md={10} p={2} height={"100vh"} overflow={"auto"}>
             <Header />
             <Box py={2}>{children}</Box>
           </Grid>

@@ -20,7 +20,7 @@ const Navbar = () => {
       height={"100%"}
       bgcolor={"secondary.50"}
       p={{ md: 1, lg: 2 }}
-      display={{ xxs: "none", md: "block" }}
+      display={{ xs: "none", md: "block" }}
     >
       <Link href={"/"} style={{ display: "flex", justifyContent: "center" }}>
         <Typography variant={"h4"} color={"primary.main"} textAlign={"center"}>

@@ -13,6 +13,7 @@ import { createTheme } from "@/theme";
 import CssBaseline from "@mui/material/CssBaseline";
 import { SettingsButton } from "@/components/settings";
 import { SettingsDrawer } from "@/components/settings-drawer";
+import { GlobalStyles } from "@mui/material";
 
 const SETTINGS_STORAGE_KEY = "app.settings";
 
@@ -69,6 +70,20 @@ export default function RootTheme(props: LayoutProps) {
                     content={theme.palette.neutral[900]}
                   />
                 </Head>
+                <GlobalStyles
+                  styles={{
+                    "&::-webkit-scrollbar": {
+                      width: 10,
+                    },
+                    "&::-webkit-scrollbar-thumb": {
+                      background: theme.palette.primary.main,
+                      borderRadius: 8,
+                    },
+                    "&::-webkit-scrollbar-thumb:hover": {
+                      background: theme.palette.primary.dark,
+                    },
+                  }}
+                />
                 <CssBaseline />
                 {children}
                 <SettingsButton onClick={themeSettings.handleDrawerOpen} />

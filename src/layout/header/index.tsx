@@ -18,14 +18,14 @@ const Header = () => {
         alignItems={"center"}
         bgcolor={"secondary.50"}
         borderRadius={2}
-        p={{ xxs: 1, md: "12px 24px" }}
+        p={{ xs: 1, md: "12px 24px" }}
       >
         <Box display={"flex"} alignItems={"center"} gap={1}>
           <MenuIcon
             sx={{
               cursor: "pointer",
               color: "primary.main",
-              display: { xxs: "block", md: "none" },
+              display: { xs: "block", md: "none" },
             }}
             onClick={() => setOpen(true)}
           />

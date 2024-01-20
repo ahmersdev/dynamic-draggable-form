@@ -48,7 +48,7 @@ export const createPalette = (config: Config): PaletteOptions => {
     success,
     text: {
       primary: neutral[900],
-      secondary: neutral[500],
+      secondary: neutral[700],
       disabled: alpha(neutral[900], 0.38),
     },
     warning,
