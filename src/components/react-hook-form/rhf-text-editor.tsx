@@ -29,6 +29,7 @@ export default function RHFEditor({ name, required, disabled, ...other }: any) {
               )}
             </FormLabel>
           )}
+          
           <ReactQuillEditor
             id={name}
             name={name}

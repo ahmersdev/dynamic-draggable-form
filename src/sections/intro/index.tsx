@@ -12,6 +12,9 @@ import {
   RHFRadioGroup,
   RHFMultiCheckbox,
   RHFCheckbox,
+  RHFDatePicker,
+  RHFDropZone,
+  RHFAutocomplete,
 } from "@/components/react-hook-form";
 import { pxToRem } from "@/utils/get-font-value";
 
@@ -87,28 +90,79 @@ const workloadDataArray = [
     },
     component: RHFCheckbox,
   },
+  {
+    id: 7,
+    componentProps: {
+      name: "date",
+      label: "Date",
+      required: true,
+    },
+    component: RHFDatePicker,
+  },
+  {
+    id: 8,
+    componentProps: {
+      name: "dropZone",
+      label: "Drop Zone",
+      required: true,
+    },
+    component: RHFDropZone,
+  },
+  {
+    id: 9,
+    componentProps: {
+      name: "autoSingle",
+      label: "Auto Single",
+      placeholder: "Auto Single",
+      required: true,
+      options: ["1", "2", "3", "4"],
+    },
+    component: RHFAutocomplete,
+  },
+  {
+    id: 10,
+    componentProps: {
+      name: "autoMulti",
+      label: "Auto Multi",
+      placeholder: "Auto Multi",
+      required: true,
+      multiple: true,
+      options: ["1", "2", "3", "4"],
+    },
+    component: RHFAutocomplete,
+  },
 ];
+
+const validationSchema: any = Yup?.object()?.shape({
+  textField: Yup?.string()?.trim()?.required("Required"),
+  paragraph: Yup?.string()?.trim(),
+  description: Yup?.string()?.trim()?.required("Required"),
+  singleSelect: Yup?.string()?.required("Required"),
+  multipleSelect: Yup?.array(),
+  checkbox: Yup?.boolean()?.oneOf([true], "Required"),
+  date: Yup?.date()?.nullable()?.required("Required"),
+  dropZone: Yup?.mixed()?.nullable()?.required("Required"),
+  autoSingle: Yup?.string()?.required("Required"),
+  autoMulti: Yup?.array()?.required("Required"),
+});
+
+const defaultValues = {
+  textField: "",
+  paragraph: "",
+  description: "",
+  singleSelect: "",
+  multipleSelect: [],
+  checkbox: false,
+  date: null,
+  dropZone: null,
+  autoSingle: "",
+  autoMulti: [],
+};
 
 export default function Intro() {
   const methods: any = useForm({
-    resolver: yupResolver(
-      Yup?.object()?.shape({
-        textField: Yup?.string()?.trim()?.required("Required"),
-        paragraph: Yup?.string()?.trim(),
-        description: Yup?.string()?.trim()?.required("Required"),
-        singleSelect: Yup?.string()?.required("Required"),
-        multipleSelect: Yup?.array(),
-        checkbox: Yup?.boolean()?.oneOf([true], "Required"),
-      })
-    ),
-    defaultValues: {
-      textField: "",
-      paragraph: "",
-      description: "",
-      singleSelect: "",
-      multipleSelect: [],
-      checkbox: false,
-    },
+    resolver: yupResolver(validationSchema),
+    defaultValues,
   });
 
   const { handleSubmit } = methods;
@@ -127,7 +181,7 @@ export default function Intro() {
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
             <Grid container spacing={2}>
               {workloadDataArray?.map((item: any) => (
-                <Grid item xs={12} md={item?.md} key={item?.id}>
+                <Grid item xs={12} key={item?.id}>
                   <item.component {...item?.componentProps} size={"small"} />
                 </Grid>
               ))}
