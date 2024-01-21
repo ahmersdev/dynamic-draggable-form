@@ -59,7 +59,7 @@ export function SettingsProvider(props: SettingsProviderProps): JSX.Element {
     onReset();
     // setSettings({ ...defaultSettings, ...initialSettings });
     setSettings({ ...defaultSettings });
-  }, [initialSettings, onReset, defaultSettings]);
+  }, [onReset]);
 
   const handleDrawerOpen = useCallback(() => {
     setState((prevState) => ({

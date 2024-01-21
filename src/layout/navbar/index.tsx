@@ -22,8 +22,14 @@ const Navbar = () => {
       p={{ md: 1, lg: 2 }}
       display={{ xs: "none", md: "block" }}
     >
-      <Link href={"/"} style={{ display: "flex", justifyContent: "center" }}>
-        <Typography variant={"h4"} color={"primary.main"} textAlign={"center"}>
+      <Link
+        href={"/"}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Typography variant={"h2"} color={"primary.main"} textAlign={"center"}>
           Dynamic Forms
         </Typography>
       </Link>

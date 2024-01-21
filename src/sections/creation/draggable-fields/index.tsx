@@ -5,7 +5,7 @@ import LinearScaleIcon from "@mui/icons-material/LinearScale";
 
 export default function DraggableFields() {
   return (
-    <>
+    <Box bgcolor={"secondary.50"} borderRadius={2} p={2}>
       {fieldsList?.map((item: any, index: number) => (
         <Box
           key={index}
@@ -38,6 +38,6 @@ export default function DraggableFields() {
           </Box>
         </Box>
       ))}
-    </>
+    </Box>
   );
 }

@@ -36,7 +36,7 @@ const DrawerNavbar = ({ open = false, setOpen }: any) => {
         justifyContent={"space-between"}
       >
         <Link href={"/"} onClick={() => setOpen(false)}>
-          <Typography variant={"h5"} color={"primary.main"}>
+          <Typography variant={"h2"} color={"primary.main"}>
             Dynamic Forms
           </Typography>
         </Link>
