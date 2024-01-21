@@ -44,6 +44,7 @@ interface LayoutProps {
 
 export default function RootTheme(props: LayoutProps) {
   const { children, settings } = props;
+
   return (
     <NextAppDirEmotionCacheProvider options={{ key: "css" }}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>

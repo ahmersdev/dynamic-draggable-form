@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { Box, FormLabel, Typography, useTheme } from "@mui/material";
 import { useDropzone } from "react-dropzone";
 import { useFormContext } from "react-hook-form";
-import AttachFileIcon from "@mui/icons-material/AttachFile";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 export default function RHFDropZone({
   name,
@@ -97,7 +97,7 @@ export default function RHFDropZone({
           </Typography>
         ) : (
           <Box>
-            <AttachFileIcon />
+            <CloudUploadIcon />
             <Typography variant="body1" fontWeight={"bold"}>
               {fileName}
             </Typography>

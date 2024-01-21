@@ -57,6 +57,7 @@ export function SettingsDrawer(props: SettingsDrawerProps): JSX.Element {
         sx: {
           maxWidth: "100%",
           width: 440,
+          borderRadius: "12px 0 0 12px",
         },
       }}
       {...other}
@@ -97,9 +98,13 @@ export function SettingsDrawer(props: SettingsDrawerProps): JSX.Element {
                 [`& .${badgeClasses.badge}`]: {
                   top: 6,
                   right: 6,
-                  ...(canReset && {
-                    display: "none",
-                  }),
+                  // ...(!canReset && {
+                  //   display: "none",
+                  // }),
+                  ...(values?.paletteMode === "dark" &&
+                    values?.colorPreset === "purple" && {
+                      display: "none",
+                    }),
                 },
               }}
               variant="dot"
