@@ -143,7 +143,7 @@ const validationSchema: any = Yup?.object()?.shape({
   date: Yup?.date()?.nullable()?.required("Required"),
   dropZone: Yup?.mixed()?.nullable()?.required("Required"),
   autoSingle: Yup?.string()?.required("Required"),
-  autoMulti: Yup?.array()?.required("Required"),
+  autoMulti: Yup?.array()?.min(1, "Required")?.required("Required"),
 });
 
 const defaultValues = {

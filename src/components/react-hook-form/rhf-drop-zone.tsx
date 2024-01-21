@@ -27,6 +27,7 @@ export default function RHFDropZone({
   const {
     setValue,
     getValues,
+    clearErrors,
     formState: { errors },
   }: any = useFormContext();
 
@@ -40,9 +41,10 @@ export default function RHFDropZone({
         (files: any) => {
           if (files && files.length > 0) {
             setValue(name, files[0]);
+            clearErrors(name);
           }
         },
-        [setValue, name]
+        [setValue, name, clearErrors]
       ),
     });
 
@@ -72,15 +74,19 @@ export default function RHFDropZone({
       <Box
         {...getRootProps()}
         sx={{
-          border: 1,
-          borderColor: !!errors[name]
-            ? theme?.palette?.error?.main
-            : theme?.palette?.secondary?.[500],
+          border: errors[name] || !!fileRejections?.length ? 3 : 1,
+          borderColor:
+            errors[name] || !!fileRejections?.length
+              ? theme.palette.error.main
+              : theme?.palette?.secondary?.[500],
           borderRadius: 1,
           padding: 2,
           textAlign: "center",
           cursor: "pointer",
           mt: 0.5,
+          "&:hover": {
+            borderColor: theme.palette.primary.main,
+          },
         }}
       >
         <input {...getInputProps()} />

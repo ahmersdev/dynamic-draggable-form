@@ -112,6 +112,21 @@ export default function RHFAutocomplete({
                       {error?.message}
                     </Typography>
                   }
+                  sx={{
+                    mt: 0.5,
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: 1,
+                      "& fieldset": {
+                        borderColor: theme?.palette?.secondary?.[500],
+                      },
+                      "&:hover fieldset": {
+                        borderColor: "primary.main",
+                      },
+                      "&.Mui-focused fieldset": {
+                        borderColor: theme?.palette?.primary?.[900],
+                      },
+                    },
+                  }}
                   InputProps={{
                     ...params?.InputProps,
                     endAdornment: (

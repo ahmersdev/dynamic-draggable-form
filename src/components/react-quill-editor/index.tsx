@@ -43,7 +43,7 @@ const ReactQuillEditor = ({
     <Box
       sx={{
         position: "relative",
-        border: 1,
+        border: other?.error ? 3 : other?.isFocused ? 3 : 1,
         borderColor: other?.error
           ? theme?.palette?.error?.main
           : other?.isFocused
