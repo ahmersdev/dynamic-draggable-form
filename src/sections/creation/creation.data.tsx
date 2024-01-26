@@ -63,3 +63,15 @@ export const fieldsList = [
     description: "Add Dropdown List",
   },
 ];
+
+export const modalInitialState: any = {
+  title: false,
+  text: false,
+  editor: false,
+  singleSelection: false,
+  multipleSelection: false,
+  date: false,
+  upload: false,
+  singleCheckbox: false,
+  dropdown: false,
+};

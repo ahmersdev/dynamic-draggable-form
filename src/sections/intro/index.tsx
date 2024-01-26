@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { enqueueSnackbar } from "notistack";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -19,6 +19,12 @@ import {
 import { pxToRem } from "@/utils/get-font-value";
 
 const workloadDataArray = [
+  {
+    id: 0,
+    heading: "Form",
+    componentProps: { variant: "h3", color: "primary.main" },
+    component: Typography,
+  },
   {
     id: 1,
     componentProps: {
@@ -175,26 +181,19 @@ export default function Intro() {
   };
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12} md={8}>
-        <Box bgcolor={"secondary.50"} borderRadius={2} p={2}>
-          <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-            <Grid container spacing={2}>
-              {workloadDataArray?.map((item: any) => (
-                <Grid item xs={12} key={item?.id}>
-                  <item.component {...item?.componentProps} size={"small"} />
-                </Grid>
-              ))}
+    <Box bgcolor={"secondary.50"} borderRadius={2} p={2}>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <Grid container spacing={2}>
+          {workloadDataArray?.map((item: any) => (
+            <Grid item xs={12} key={item?.id}>
+              <item.component {...item?.componentProps} size={"small"}>
+                {item?.heading}
+              </item.component>
             </Grid>
-            <Button type={"submit"}>Submit</Button>
-          </FormProvider>
-        </Box>
-      </Grid>
-      <Grid item xs={12} md={4}>
-        <Box bgcolor={"secondary.50"} borderRadius={2} p={2}>
-          Drag Here
-        </Box>
-      </Grid>
-    </Grid>
+          ))}
+        </Grid>
+        <Button type={"submit"}>Submit</Button>
+      </FormProvider>
+    </Box>
   );
 }
