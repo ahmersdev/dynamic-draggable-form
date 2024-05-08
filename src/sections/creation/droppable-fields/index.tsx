@@ -1,11 +1,19 @@
 import { Box, Button, Typography } from "@mui/material";
 import { Draggable } from "react-beautiful-dnd";
 import { StrictModeDroppable as Droppable } from "@/components/strict-mode-droppable";
+import { FormProvider } from "@/components/react-hook-form";
+import { useForm } from "react-hook-form";
+import React, { createElement } from "react";
+import { componentMap } from "@/utils/component-map";
 
 export default function DroppableFields({ form }: any) {
   const handleFormCreation = () => {
-    console.log(form);
+    console.log("Form Data: ", form);
+
+    localStorage?.setItem("form", JSON.stringify(form));
   };
+
+  const methods: any = useForm({});
 
   return (
     <Droppable droppableId={"droppable"}>
@@ -35,9 +43,18 @@ export default function DroppableFields({ form }: any) {
                     {...provided.dragHandleProps}
                     my={1}
                   >
-                    <item.component {...item?.componentProps} size={"small"}>
-                      {item?.heading}
-                    </item.component>
+                    <FormProvider methods={methods}>
+                      {componentMap[item?.component] &&
+                        createElement(
+                          componentMap[item?.component],
+                          {
+                            ...item?.componentProps,
+                            size: "small",
+                            disabled: true,
+                          },
+                          item?.heading
+                        )}
+                    </FormProvider>
                   </Box>
                 )}
               </Draggable>

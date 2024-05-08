@@ -5,12 +5,18 @@ import DraggableFields from "./draggable-fields";
 import { DragDropContext } from "react-beautiful-dnd";
 import DroppableFields from "./droppable-fields";
 import { fieldsList } from "./creation.data";
-import { Title } from "@/components/modals";
+import { Text, Title } from "@/components/modals";
 import useCreation from "./use-creation";
 
 export default function Creation() {
-  const { handleDragEnd, form, modal, setModal, handleOnSubmitTitle } =
-    useCreation();
+  const {
+    handleDragEnd,
+    form,
+    modal,
+    setModal,
+    handleOnSubmitTitle,
+    handleOnSubmitText,
+  } = useCreation();
 
   return (
     <>
@@ -24,11 +30,19 @@ export default function Creation() {
           </Grid>
         </Grid>
       </DragDropContext>
+
       {modal?.title && (
         <Title
           open={modal?.title}
           setOpen={setModal}
           onSubmitCallback={handleOnSubmitTitle}
+        />
+      )}
+      {modal?.text && (
+        <Text
+          open={modal?.text}
+          setOpen={setModal}
+          onSubmitCallback={handleOnSubmitText}
         />
       )}
     </>

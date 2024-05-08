@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { fieldsList, modalInitialState } from "./creation.data";
-import { Typography } from "@mui/material";
+import { generateUniqueId } from "@/utils/generate-unique-id";
 
 export default function useCreation() {
   const [form, setForm] = useState<any>([]);
@@ -21,9 +21,9 @@ export default function useCreation() {
     };
 
     if (draggedItem?.id !== undefined) {
-      if (fieldsList[draggedItem.id]) {
-        const itemType = fieldsList[draggedItem.id]?.title.toLowerCase();
-        if (newModal.hasOwnProperty(itemType)) {
+      if (fieldsList[draggedItem?.id]) {
+        const itemType = fieldsList[draggedItem.id]?.title?.toLowerCase();
+        if (newModal?.hasOwnProperty(itemType)) {
           newModal[itemType] = true;
         }
       }
@@ -46,16 +46,49 @@ export default function useCreation() {
   // Title Submission Handler
   const handleOnSubmitTitle = (data: any) => {
     setModal(false);
+    const uniqueId = generateUniqueId();
     setForm([
       ...form,
       {
-        id: String(form?.length + 1),
+        id: uniqueId,
         heading: data?.title,
         componentProps: { variant: "h3", color: "primary.main" },
-        component: Typography,
+        component: "Typography",
       },
     ]);
   };
 
-  return { handleDragEnd, form, modal, setModal, handleOnSubmitTitle };
+  // Text Field Submission Handler
+  const handleOnSubmitText = (data: any) => {
+    setModal(false);
+    const uniqueId = generateUniqueId();
+    setForm([
+      ...form,
+      {
+        id: uniqueId,
+        componentProps: {
+          name: data?.name?.replace(/\s/g, ""),
+          label: data?.name,
+          placeholder: data?.placeholder,
+          type:
+            data?.type === "Multi Line" || data?.type === "Single Line"
+              ? "text"
+              : data?.type?.toLowerCase(),
+          required: data?.required,
+          multiline: data?.type === "Multi Line" ? true : false,
+          rows: data?.lineCount,
+        },
+        component: "RHFTextField",
+      },
+    ]);
+  };
+
+  return {
+    handleDragEnd,
+    form,
+    modal,
+    setModal,
+    handleOnSubmitTitle,
+    handleOnSubmitText,
+  };
 }
