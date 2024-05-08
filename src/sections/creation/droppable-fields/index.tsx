@@ -8,8 +8,6 @@ import { componentMap } from "@/utils/component-map";
 
 export default function DroppableFields({ form }: any) {
   const handleFormCreation = () => {
-    console.log("Form Data: ", form);
-
     localStorage?.setItem("form", JSON.stringify(form));
   };
 

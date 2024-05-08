@@ -174,7 +174,7 @@ export default function Intro() {
   const { handleSubmit } = methods;
 
   const onSubmit = async (data: any) => {
-    enqueueSnackbar("Task Updated Successfully", {
+    enqueueSnackbar("Form Submitted Successfully", {
       variant: "success",
     });
     console.log(data);
@@ -192,7 +192,9 @@ export default function Intro() {
             </Grid>
           ))}
         </Grid>
-        <Button type={"submit"}>Submit</Button>
+        <Button type={"submit"} variant={"outlined"}>
+          Submit
+        </Button>
       </FormProvider>
     </Box>
   );
