@@ -74,12 +74,19 @@ export default function Radio({ open, setOpen, onSubmitCallback }: any) {
     return () => clearTimeout(timeoutId);
   }, [count, fields, append, remove]);
 
-  fields?.forEach((_, index) => {
-    const label = watch(`options[${index}].label`);
-    useEffect(() => {
-      methods?.setValue(`options[${index}].value`, label);
-    }, [label, methods, index]);
-  });
+  // fields?.forEach((_, index) => {
+  //   const label = watch(`options[${index}].label`);
+  //   useEffect(() => {
+  //     methods?.setValue(`options[${index}].value`, label);
+  //   }, [label, methods, index, methods]);
+  // });
+
+  // useEffect(() => {
+  //   fields.forEach((_, index) => {
+  //     const label = watch(`options[${index}].label`);
+  //     methods?.setValue(`options[${index}].value`, label);
+  //   });
+  // }, [fields, methods, watch]);
 
   const onSubmit = (data: any) => {
     onSubmitCallback(data);

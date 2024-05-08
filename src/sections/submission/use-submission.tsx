@@ -54,7 +54,7 @@ export default function useSubmission() {
 
   useEffect(() => {
     reset({ ...initialValues });
-  }, [form]);
+  }, [form, initialValues, reset]);
 
   const onSubmit = (data: any) => {
     enqueueSnackbar("Form Submitted Successfully", {
