@@ -15,7 +15,7 @@ export default function Title({ open, setOpen, onSubmitCallback }: any) {
   const methods: any = useForm({
     resolver: yupResolver(
       Yup?.object()?.shape({
-        title: Yup?.string()?.trim()?.required("Required"),
+        title: Yup?.string()?.trim()?.required("Title is Required"),
       })
     ),
     defaultValues: { title: "" },

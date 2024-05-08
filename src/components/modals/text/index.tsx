@@ -18,15 +18,15 @@ import { useForm } from "react-hook-form";
 
 const typeDropDown = ["Single Line", "Multi Line", "Email", "Password", "URL"];
 
-const textFieldValidationSchema: any = Yup?.object()?.shape({
-  name: Yup?.string()?.trim()?.required("Required"),
+const validationSchema: any = Yup?.object()?.shape({
+  name: Yup?.string()?.trim()?.required("Name is Required"),
   placeholder: Yup?.string()?.trim(),
-  type: Yup?.mixed()?.nullable()?.required("Select Type"),
+  type: Yup?.mixed()?.nullable()?.required("Select Type of Field"),
   lineCount: Yup?.number()?.positive("Must be Above 0"),
   required: Yup?.boolean()?.nullable(),
 });
 
-const textFieldDefaultValues: any = {
+const defaultValues: any = {
   name: "",
   placeholder: "",
   type: null,
@@ -36,8 +36,8 @@ const textFieldDefaultValues: any = {
 
 export default function Text({ open, setOpen, onSubmitCallback }: any) {
   const methods: any = useForm({
-    resolver: yupResolver(textFieldValidationSchema),
-    defaultValues: textFieldDefaultValues,
+    resolver: yupResolver(validationSchema),
+    defaultValues,
   });
 
   const { handleSubmit, watch } = methods;

@@ -5,7 +5,7 @@ import DraggableFields from "./draggable-fields";
 import { DragDropContext } from "react-beautiful-dnd";
 import DroppableFields from "./droppable-fields";
 import { fieldsList } from "./creation.data";
-import { Editor, Text, Title } from "@/components/modals";
+import { Editor, Radio, Text, Title } from "@/components/modals";
 import useCreation from "./use-creation";
 
 export default function Creation() {
@@ -17,6 +17,7 @@ export default function Creation() {
     handleOnSubmitTitle,
     handleOnSubmitText,
     handleOnSubmitEditor,
+    handleOnSubmitRadio,
   } = useCreation();
 
   return (
@@ -53,6 +54,14 @@ export default function Creation() {
           open={modal?.editor}
           setOpen={setModal}
           onSubmitCallback={handleOnSubmitEditor}
+        />
+      )}
+
+      {modal?.radio && (
+        <Radio
+          open={modal?.radio}
+          setOpen={setModal}
+          onSubmitCallback={handleOnSubmitRadio}
         />
       )}
     </>

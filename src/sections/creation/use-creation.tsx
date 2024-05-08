@@ -12,7 +12,7 @@ export default function useCreation() {
       title: false,
       text: false,
       editor: false,
-      singleSelection: false,
+      radio: false,
       multipleSelection: false,
       date: false,
       upload: false,
@@ -22,7 +22,9 @@ export default function useCreation() {
 
     if (draggedItem?.id !== undefined) {
       if (fieldsList[draggedItem?.id]) {
-        const itemType = fieldsList[draggedItem.id]?.title?.toLowerCase();
+        const itemType = fieldsList[draggedItem.id]?.title
+          ?.toLowerCase()
+          ?.replace(/\s/g, "");
         if (newModal?.hasOwnProperty(itemType)) {
           newModal[itemType] = true;
         }
@@ -101,6 +103,25 @@ export default function useCreation() {
     ]);
   };
 
+  // Radio Group Submission Handler
+  const handleOnSubmitRadio = (data: any) => {
+    setModal(false);
+    const uniqueId = generateUniqueId();
+    setForm([
+      ...form,
+      {
+        id: uniqueId,
+        componentProps: {
+          name: data?.name?.replace(/\s/g, ""),
+          label: data?.name,
+          required: data?.required,
+          options: data?.options,
+        },
+        component: "RHFRadioGroup",
+      },
+    ]);
+  };
+
   return {
     handleDragEnd,
     form,
@@ -109,5 +130,7 @@ export default function useCreation() {
     handleOnSubmitTitle,
     handleOnSubmitText,
     handleOnSubmitEditor,
+    handleOnSubmitRadio,
+    setForm,
   };
 }

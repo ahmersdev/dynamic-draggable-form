@@ -28,7 +28,7 @@ export const fieldsList = [
   },
   {
     id: "3",
-    title: "Single Selection",
+    title: "Radio",
     icon: <RadioButtonCheckedIcon />,
     description: "Only One Item With a Radio Button",
   },
@@ -68,7 +68,7 @@ export const modalInitialState: any = {
   title: false,
   text: false,
   editor: false,
-  singleSelection: false,
+  radio: false,
   multipleSelection: false,
   date: false,
   upload: false,
