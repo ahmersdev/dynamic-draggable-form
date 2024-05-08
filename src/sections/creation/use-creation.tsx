@@ -83,6 +83,24 @@ export default function useCreation() {
     ]);
   };
 
+  // Editor Submission Handler
+  const handleOnSubmitEditor = (data: any) => {
+    setModal(false);
+    const uniqueId = generateUniqueId();
+    setForm([
+      ...form,
+      {
+        id: uniqueId,
+        componentProps: {
+          name: data?.name?.replace(/\s/g, ""),
+          label: data?.name,
+          required: data?.required,
+        },
+        component: "RHFTextEditor",
+      },
+    ]);
+  };
+
   return {
     handleDragEnd,
     form,
@@ -90,5 +108,6 @@ export default function useCreation() {
     setModal,
     handleOnSubmitTitle,
     handleOnSubmitText,
+    handleOnSubmitEditor,
   };
 }
