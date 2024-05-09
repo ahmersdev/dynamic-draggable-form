@@ -78,6 +78,7 @@ const workloadDataArray = [
       name: "multipleSelect",
       label: "Multiple Select",
       md: 6,
+      required: true,
       options: [
         { label: "1", value: "1" },
         { label: "2", value: "2" },
@@ -144,7 +145,7 @@ const validationSchema: any = Yup?.object()?.shape({
   paragraph: Yup?.string()?.trim(),
   description: Yup?.string()?.trim()?.required("Required"),
   singleSelect: Yup?.string()?.required("Required"),
-  multipleSelect: Yup?.array(),
+  multipleSelect: Yup?.array()?.min(1, "At least 1 Required"),
   checkbox: Yup?.boolean()?.oneOf([true], "Required"),
   date: Yup?.date()?.nullable()?.required("Required"),
   dropZone: Yup?.mixed()?.nullable()?.required("Required"),

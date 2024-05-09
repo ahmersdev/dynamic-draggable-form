@@ -34,7 +34,7 @@ export const fieldsList = [
   },
   {
     id: "4",
-    title: "Multiple Selection",
+    title: "Multiple",
     icon: <CheckBoxIcon />,
     description: "Multiple Options Using Checkbox",
   },
@@ -69,7 +69,7 @@ export const modalInitialState: any = {
   text: false,
   editor: false,
   radio: false,
-  multipleSelection: false,
+  multiple: false,
   date: false,
   upload: false,
   singleCheckbox: false,

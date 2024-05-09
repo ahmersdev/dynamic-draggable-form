@@ -39,7 +39,11 @@ const defaultValues: any = {
   required: false,
 };
 
-export default function Radio({ open, setOpen, onSubmitCallback }: any) {
+export default function MultiCheckbox({
+  open,
+  setOpen,
+  onSubmitCallback,
+}: any) {
   const methods: any = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues,

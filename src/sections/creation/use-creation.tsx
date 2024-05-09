@@ -13,7 +13,7 @@ export default function useCreation() {
       text: false,
       editor: false,
       radio: false,
-      multipleSelection: false,
+      multiple: false,
       date: false,
       upload: false,
       singleCheckbox: false,
@@ -122,6 +122,25 @@ export default function useCreation() {
     ]);
   };
 
+  // Multiple Selection Submission Handler
+  const handleOnSubmitMultipleSelection = (data: any) => {
+    setModal(false);
+    const uniqueId = generateUniqueId();
+    setForm([
+      ...form,
+      {
+        id: uniqueId,
+        componentProps: {
+          name: data?.name?.replace(/\s/g, ""),
+          label: data?.name,
+          required: data?.required,
+          options: data?.options,
+        },
+        component: "RHFMultiCheckbox",
+      },
+    ]);
+  };
+
   return {
     handleDragEnd,
     form,
@@ -131,6 +150,6 @@ export default function useCreation() {
     handleOnSubmitText,
     handleOnSubmitEditor,
     handleOnSubmitRadio,
-    setForm,
+    handleOnSubmitMultipleSelection,
   };
 }

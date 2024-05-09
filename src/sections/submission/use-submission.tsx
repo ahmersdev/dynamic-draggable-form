@@ -14,7 +14,10 @@ export default function useSubmission() {
   // Validation Schema Creation
   const formSchema: any = form
     ?.map((item: any) => {
-      const schema = Yup?.string();
+      const schema =
+        item?.component === "RHFMultiCheckbox"
+          ? Yup?.array()?.min(1, "At least 1 Required")
+          : Yup?.string();
       return item?.componentProps?.required
         ? {
             [item?.componentProps?.name]: schema?.required(
@@ -35,6 +38,15 @@ export default function useSubmission() {
   const initialValues: any = form
     ?.map((item: any) => {
       let initialValue: string | boolean | string[] = "";
+      if (item?.component === "RHFMultiCheckbox") {
+        initialValue = [];
+      }
+      // else if ( el.answerType === EInputType.YesNo) {
+      //   initialValue = false;
+      // }
+      else {
+        initialValue = "";
+      }
       return { [item?.componentProps?.name]: initialValue };
     })
     ?.filter((item: any) => Object.keys(item)[0] !== "undefined")
@@ -51,10 +63,6 @@ export default function useSubmission() {
   });
 
   const { handleSubmit, reset } = methods;
-
-  useEffect(() => {
-    reset({ ...initialValues });
-  }, [form, initialValues, reset]);
 
   const onSubmit = (data: any) => {
     enqueueSnackbar("Form Submitted Successfully", {

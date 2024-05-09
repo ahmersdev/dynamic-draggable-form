@@ -18,6 +18,7 @@ export default function Creation() {
     handleOnSubmitText,
     handleOnSubmitEditor,
     handleOnSubmitRadio,
+    handleOnSubmitMultipleSelection,
   } = useCreation();
 
   return (
@@ -62,6 +63,14 @@ export default function Creation() {
           open={modal?.radio}
           setOpen={setModal}
           onSubmitCallback={handleOnSubmitRadio}
+        />
+      )}
+
+      {modal?.multiple && (
+        <Radio
+          open={modal?.multiple}
+          setOpen={setModal}
+          onSubmitCallback={handleOnSubmitMultipleSelection}
         />
       )}
     </>
