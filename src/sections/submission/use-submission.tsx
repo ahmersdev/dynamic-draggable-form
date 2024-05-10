@@ -1,5 +1,5 @@
 import { enqueueSnackbar } from "notistack";
-import { createElement, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -57,12 +57,14 @@ export default function useSubmission() {
       return acc;
     }, {});
 
+  console.log(initialValues);
+
   const methods: any = useForm({
     resolver: yupResolver(Yup?.object()?.shape({ ...formSchema })),
     defaultValues: { ...initialValues },
   });
 
-  const { handleSubmit, reset } = methods;
+  const { handleSubmit } = methods;
 
   const onSubmit = (data: any) => {
     enqueueSnackbar("Form Submitted Successfully", {
