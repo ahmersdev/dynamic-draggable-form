@@ -15,6 +15,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { generateUniqueId } from "@/utils/generate-unique-id";
 
 const validationSchema: any = Yup?.object()?.shape({
   name: Yup?.string()?.trim()?.required("Name is Required"),
@@ -39,7 +40,7 @@ const defaultValues: any = {
   required: false,
 };
 
-export default function Radio({ open, setOpen, onSubmitCallback }: any) {
+export default function Radio({ open, setOpen, form, setForm }: any) {
   const methods: any = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues,
@@ -79,7 +80,21 @@ export default function Radio({ open, setOpen, onSubmitCallback }: any) {
       const label = watch(`options[${index}].label`);
       setValue(`options[${index}].value`, label);
     });
-    onSubmitCallback(data);
+    setOpen(false);
+    const uniqueId = generateUniqueId();
+    setForm([
+      ...form,
+      {
+        id: uniqueId,
+        componentProps: {
+          name: data?.name?.replace(/\s/g, ""),
+          label: data?.name,
+          required: data?.required,
+          options: data?.options,
+        },
+        component: "RHFRadioGroup",
+      },
+    ]);
   };
 
   return (

@@ -15,6 +15,7 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
+import { generateUniqueId } from "@/utils/generate-unique-id";
 
 const typeDropDown = ["Single Line", "Multi Line", "Email", "Password", "URL"];
 
@@ -34,7 +35,7 @@ const defaultValues: any = {
   required: false,
 };
 
-export default function Text({ open, setOpen, onSubmitCallback }: any) {
+export default function Text({ open, setOpen, form, setForm }: any) {
   const methods: any = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues,
@@ -45,7 +46,27 @@ export default function Text({ open, setOpen, onSubmitCallback }: any) {
   const type = watch("type");
 
   const onSubmit = (data: any) => {
-    onSubmitCallback(data);
+    setOpen(false);
+    const uniqueId = generateUniqueId();
+    setForm([
+      ...form,
+      {
+        id: uniqueId,
+        componentProps: {
+          name: data?.name?.replace(/\s/g, ""),
+          label: data?.name,
+          placeholder: data?.placeholder,
+          type:
+            data?.type === "Multi Line" || data?.type === "Single Line"
+              ? "text"
+              : data?.type?.toLowerCase(),
+          required: data?.required,
+          multiline: data?.type === "Multi Line" ? true : false,
+          rows: data?.lineCount,
+        },
+        component: "RHFTextField",
+      },
+    ]);
   };
 
   return (

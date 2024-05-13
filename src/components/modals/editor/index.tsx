@@ -14,6 +14,7 @@ import {
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
+import { generateUniqueId } from "@/utils/generate-unique-id";
 
 const validationSchema: any = Yup?.object()?.shape({
   name: Yup?.string()?.trim()?.required("Name is Required"),
@@ -27,7 +28,7 @@ const defaultValues: any = {
   required: false,
 };
 
-export default function Editor({ open, setOpen, onSubmitCallback }: any) {
+export default function Editor({ open, setOpen, form, setForm }: any) {
   const methods: any = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues,
@@ -36,7 +37,20 @@ export default function Editor({ open, setOpen, onSubmitCallback }: any) {
   const { handleSubmit } = methods;
 
   const onSubmit = (data: any) => {
-    onSubmitCallback(data);
+    setOpen(false);
+    const uniqueId = generateUniqueId();
+    setForm([
+      ...form,
+      {
+        id: uniqueId,
+        componentProps: {
+          name: data?.name?.replace(/\s/g, ""),
+          label: data?.name,
+          required: data?.required,
+        },
+        component: "RHFTextEditor",
+      },
+    ]);
   };
 
   return (

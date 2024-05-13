@@ -10,8 +10,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { FormProvider, RHFTextField } from "@/components/react-hook-form";
+import { generateUniqueId } from "@/utils/generate-unique-id";
 
-export default function Title({ open, setOpen, onSubmitCallback }: any) {
+export default function Title({ open, setOpen, form, setForm }: any) {
   const methods: any = useForm({
     resolver: yupResolver(
       Yup?.object()?.shape({
@@ -24,7 +25,17 @@ export default function Title({ open, setOpen, onSubmitCallback }: any) {
   const { handleSubmit } = methods;
 
   const onSubmit = (data: any) => {
-    onSubmitCallback(data);
+    setOpen(false);
+    const uniqueId = generateUniqueId();
+    setForm([
+      ...form,
+      {
+        id: uniqueId,
+        heading: data?.title,
+        componentProps: { variant: "h3", color: "primary.main" },
+        component: "Typography",
+      },
+    ]);
   };
 
   return (

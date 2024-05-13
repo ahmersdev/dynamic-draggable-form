@@ -43,3 +43,9 @@ export interface ThemeConfig {
   responsiveFontSizes?: boolean;
   disableButtonsOnLoginAs?: boolean;
 }
+
+export type LoaderPushStateInput = [
+  data: unknown,
+  unused: string,
+  url?: string | URL | undefined
+];

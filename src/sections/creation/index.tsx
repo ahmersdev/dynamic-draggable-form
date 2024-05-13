@@ -5,21 +5,11 @@ import DraggableFields from "./draggable-fields";
 import { DragDropContext } from "react-beautiful-dnd";
 import DroppableFields from "./droppable-fields";
 import { fieldsList } from "./creation.data";
-import { Editor, Radio, Text, Title } from "@/components/modals";
+import { Editor, MultiCheckbox, Radio, Text, Title } from "@/components/modals";
 import useCreation from "./use-creation";
 
 export default function Creation() {
-  const {
-    handleDragEnd,
-    form,
-    modal,
-    setModal,
-    handleOnSubmitTitle,
-    handleOnSubmitText,
-    handleOnSubmitEditor,
-    handleOnSubmitRadio,
-    handleOnSubmitMultipleSelection,
-  } = useCreation();
+  const { handleDragEnd, form, setForm, modal, setModal } = useCreation();
 
   return (
     <>
@@ -38,7 +28,8 @@ export default function Creation() {
         <Title
           open={modal?.title}
           setOpen={setModal}
-          onSubmitCallback={handleOnSubmitTitle}
+          form={form}
+          setForm={setForm}
         />
       )}
 
@@ -46,7 +37,8 @@ export default function Creation() {
         <Text
           open={modal?.text}
           setOpen={setModal}
-          onSubmitCallback={handleOnSubmitText}
+          form={form}
+          setForm={setForm}
         />
       )}
 
@@ -54,7 +46,8 @@ export default function Creation() {
         <Editor
           open={modal?.editor}
           setOpen={setModal}
-          onSubmitCallback={handleOnSubmitEditor}
+          form={form}
+          setForm={setForm}
         />
       )}
 
@@ -62,15 +55,17 @@ export default function Creation() {
         <Radio
           open={modal?.radio}
           setOpen={setModal}
-          onSubmitCallback={handleOnSubmitRadio}
+          form={form}
+          setForm={setForm}
         />
       )}
 
       {modal?.multiple && (
-        <Radio
+        <MultiCheckbox
           open={modal?.multiple}
           setOpen={setModal}
-          onSubmitCallback={handleOnSubmitMultipleSelection}
+          form={form}
+          setForm={setForm}
         />
       )}
     </>

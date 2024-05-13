@@ -7,7 +7,6 @@ import DrawerNavbar from "../drawer-navbar";
 
 const Header = () => {
   const pathName = usePathname();
-
   const [open, setOpen] = useState(false);
 
   return (
