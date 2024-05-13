@@ -126,18 +126,6 @@ const workloadDataArray = [
     },
     component: RHFAutocomplete,
   },
-  {
-    id: 10,
-    componentProps: {
-      name: "autoMulti",
-      label: "Auto Multi",
-      placeholder: "Auto Multi",
-      required: true,
-      multiple: true,
-      options: ["1", "2", "3", "4"],
-    },
-    component: RHFAutocomplete,
-  },
 ];
 
 const validationSchema: any = Yup?.object()?.shape({
@@ -150,7 +138,6 @@ const validationSchema: any = Yup?.object()?.shape({
   date: Yup?.date()?.nullable()?.required("Required"),
   dropZone: Yup?.mixed()?.nullable()?.required("Required"),
   autoSingle: Yup?.string()?.required("Required"),
-  autoMulti: Yup?.array()?.min(1, "Required")?.required("Required"),
 });
 
 const defaultValues = {
@@ -163,7 +150,6 @@ const defaultValues = {
   date: null,
   dropZone: null,
   autoSingle: "",
-  autoMulti: [],
 };
 
 export default function Intro() {

@@ -1,4 +1,5 @@
 import {
+  RHFDatePicker,
   RHFMultiCheckbox,
   RHFRadioGroup,
   RHFTextEditor,
@@ -12,4 +13,5 @@ export const componentMap: any = {
   RHFTextEditor: RHFTextEditor,
   RHFRadioGroup: RHFRadioGroup,
   RHFMultiCheckbox: RHFMultiCheckbox,
+  RHFDatePicker: RHFDatePicker,
 };

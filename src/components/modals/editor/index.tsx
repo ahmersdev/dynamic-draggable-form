@@ -11,47 +11,14 @@ import {
   RHFCheckbox,
   RHFTextField,
 } from "@/components/react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
-import { useForm } from "react-hook-form";
-import { generateUniqueId } from "@/utils/generate-unique-id";
-
-const validationSchema: any = Yup?.object()?.shape({
-  name: Yup?.string()?.trim()?.required("Name is Required"),
-  placeholder: Yup?.string()?.trim(),
-  required: Yup?.boolean()?.nullable(),
-});
-
-const defaultValues: any = {
-  name: "",
-  placeholder: "",
-  required: false,
-};
+import useEditor from "./use-editor";
 
 export default function Editor({ open, setOpen, form, setForm }: any) {
-  const methods: any = useForm({
-    resolver: yupResolver(validationSchema),
-    defaultValues,
+  const { methods, handleSubmit, onSubmit } = useEditor({
+    setOpen,
+    setForm,
+    form,
   });
-
-  const { handleSubmit } = methods;
-
-  const onSubmit = (data: any) => {
-    setOpen(false);
-    const uniqueId = generateUniqueId();
-    setForm([
-      ...form,
-      {
-        id: uniqueId,
-        componentProps: {
-          name: data?.name?.replace(/\s/g, ""),
-          label: data?.name,
-          required: data?.required,
-        },
-        component: "RHFTextEditor",
-      },
-    ]);
-  };
 
   return (
     <Dialog open={open} onClose={() => setOpen(false)}>

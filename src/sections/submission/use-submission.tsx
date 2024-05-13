@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { RHF_COMPONENTS } from "@/constants/strings";
 
 export default function useSubmission() {
   const [form, setForm] = useState<any[]>([]);
@@ -15,8 +16,14 @@ export default function useSubmission() {
   const formSchema: any = form
     ?.map((item: any) => {
       const schema =
-        item?.component === "RHFMultiCheckbox"
+        item?.component === RHF_COMPONENTS.RHF_MULTI_CHECKBOX
           ? Yup?.array()?.min(1, "At least 1 Required")
+          : item?.component === RHF_COMPONENTS.RHF_DATE_PICKER
+          ? Yup?.date()?.nullable()
+          : item?.component === RHF_COMPONENTS.RHF_DROP_ZONE
+          ? Yup?.mixed()?.nullable()
+          : item?.component === RHF_COMPONENTS.RHF_CHECKBOX
+          ? Yup?.boolean()?.oneOf([true], "Required")
           : Yup?.string();
       return item?.componentProps?.required
         ? {
@@ -37,14 +44,17 @@ export default function useSubmission() {
   // Initial Values Creation
   const initialValues: any = form
     ?.map((item: any) => {
-      let initialValue: string | boolean | string[] = "";
-      if (item?.component === "RHFMultiCheckbox") {
+      let initialValue: string | boolean | string[] | null;
+      if (item?.component === RHF_COMPONENTS.RHF_MULTI_CHECKBOX) {
         initialValue = [];
-      }
-      // else if ( el.answerType === EInputType.YesNo) {
-      //   initialValue = false;
-      // }
-      else {
+      } else if (
+        item?.component === RHF_COMPONENTS.RHF_DATE_PICKER ||
+        item?.component === RHF_COMPONENTS.RHF_DROP_ZONE
+      ) {
+        initialValue = null;
+      } else if (item?.component === RHF_COMPONENTS.RHF_CHECKBOX) {
+        initialValue = false;
+      } else {
         initialValue = "";
       }
       return { [item?.componentProps?.name]: initialValue };
@@ -56,8 +66,6 @@ export default function useSubmission() {
       acc[key] = value;
       return acc;
     }, {});
-
-  console.log(initialValues);
 
   const methods: any = useForm({
     resolver: yupResolver(Yup?.object()?.shape({ ...formSchema })),

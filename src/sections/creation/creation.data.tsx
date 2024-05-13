@@ -39,7 +39,7 @@ export const fieldsList = [
     description: "Multiple Options Using Checkbox",
   },
   {
-    id: "7",
+    id: "5",
     title: "Date",
     icon: <CalendarMonthIcon />,
     description: "Select Date Fro DatePicker",
@@ -51,8 +51,8 @@ export const fieldsList = [
     description: "Send Files Via Documents and Media",
   },
   {
-    id: "5",
-    title: "Single Checkbox",
+    id: "7",
+    title: "Checkbox",
     icon: <CheckBoxIcon />,
     description: "Single Option Using Checkbox",
   },
@@ -72,6 +72,6 @@ export const modalInitialState: any = {
   multiple: false,
   date: false,
   upload: false,
-  singleCheckbox: false,
+  checkbox: false,
   dropdown: false,
 };

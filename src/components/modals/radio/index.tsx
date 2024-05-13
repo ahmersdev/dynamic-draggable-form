@@ -11,91 +11,14 @@ import {
   RHFCheckbox,
   RHFTextField,
 } from "@/components/react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
-import { useFieldArray, useForm } from "react-hook-form";
-import { useEffect } from "react";
-import { generateUniqueId } from "@/utils/generate-unique-id";
-
-const validationSchema: any = Yup?.object()?.shape({
-  name: Yup?.string()?.trim()?.required("Name is Required"),
-  count: Yup?.number()
-    ?.positive("Must be Above 0")
-    ?.required("Total Options are Required"),
-  options: Yup?.array()?.of(
-    Yup?.object()?.shape({
-      label: Yup?.string()?.required("Required"),
-    })
-  ),
-  required: Yup?.boolean()?.nullable(),
-});
-
-const defaultValues: any = {
-  name: "",
-  count: 2,
-  options: [
-    { label: "", value: "" },
-    { label: "", value: "" },
-  ],
-  required: false,
-};
+import useRadio from "./use-radio";
 
 export default function Radio({ open, setOpen, form, setForm }: any) {
-  const methods: any = useForm({
-    resolver: yupResolver(validationSchema),
-    defaultValues,
+  const { methods, handleSubmit, onSubmit, fields } = useRadio({
+    setOpen,
+    setForm,
+    form,
   });
-
-  const { handleSubmit, watch, control, setValue } = methods;
-
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "options",
-  });
-
-  const count = watch("count");
-
-  useEffect(() => {
-    const diff = count - fields?.length;
-
-    const makeChanges = () => {
-      if (diff > 0) {
-        for (let i = 0; i < diff; i++) {
-          append({ label: "", value: "" });
-        }
-      } else if (diff < 0) {
-        for (let i = 0; i < -diff; i++) {
-          remove(fields?.length - 1);
-        }
-      }
-    };
-
-    const timeoutId = setTimeout(makeChanges, 500);
-
-    return () => clearTimeout(timeoutId);
-  }, [count, fields, append, remove]);
-
-  const onSubmit = (data: any) => {
-    fields.forEach((_, index) => {
-      const label = watch(`options[${index}].label`);
-      setValue(`options[${index}].value`, label);
-    });
-    setOpen(false);
-    const uniqueId = generateUniqueId();
-    setForm([
-      ...form,
-      {
-        id: uniqueId,
-        componentProps: {
-          name: data?.name?.replace(/\s/g, ""),
-          label: data?.name,
-          required: data?.required,
-          options: data?.options,
-        },
-        component: "RHFRadioGroup",
-      },
-    ]);
-  };
 
   return (
     <Dialog open={open} onClose={() => setOpen(false)}>

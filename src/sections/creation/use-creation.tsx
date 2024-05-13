@@ -15,7 +15,7 @@ export default function useCreation() {
       multiple: false,
       date: false,
       upload: false,
-      singleCheckbox: false,
+      checkbox: false,
       dropdown: false,
     };
 

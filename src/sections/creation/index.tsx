@@ -5,7 +5,14 @@ import DraggableFields from "./draggable-fields";
 import { DragDropContext } from "react-beautiful-dnd";
 import DroppableFields from "./droppable-fields";
 import { fieldsList } from "./creation.data";
-import { Editor, MultiCheckbox, Radio, Text, Title } from "@/components/modals";
+import {
+  Editor,
+  MultiCheckbox,
+  Radio,
+  Text,
+  Title,
+  Date,
+} from "@/components/modals";
 import useCreation from "./use-creation";
 
 export default function Creation() {
@@ -63,6 +70,15 @@ export default function Creation() {
       {modal?.multiple && (
         <MultiCheckbox
           open={modal?.multiple}
+          setOpen={setModal}
+          form={form}
+          setForm={setForm}
+        />
+      )}
+
+      {modal?.date && (
+        <Date
+          open={modal?.date}
           setOpen={setModal}
           form={form}
           setForm={setForm}

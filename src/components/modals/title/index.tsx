@@ -6,37 +6,15 @@ import {
   DialogTitle,
   Grid,
 } from "@mui/material";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
-import { useForm } from "react-hook-form";
 import { FormProvider, RHFTextField } from "@/components/react-hook-form";
-import { generateUniqueId } from "@/utils/generate-unique-id";
+import useTitle from "./use-title";
 
 export default function Title({ open, setOpen, form, setForm }: any) {
-  const methods: any = useForm({
-    resolver: yupResolver(
-      Yup?.object()?.shape({
-        title: Yup?.string()?.trim()?.required("Title is Required"),
-      })
-    ),
-    defaultValues: { title: "" },
+  const { methods, handleSubmit, onSubmit } = useTitle({
+    setOpen,
+    setForm,
+    form,
   });
-
-  const { handleSubmit } = methods;
-
-  const onSubmit = (data: any) => {
-    setOpen(false);
-    const uniqueId = generateUniqueId();
-    setForm([
-      ...form,
-      {
-        id: uniqueId,
-        heading: data?.title,
-        componentProps: { variant: "h3", color: "primary.main" },
-        component: "Typography",
-      },
-    ]);
-  };
 
   return (
     <Dialog open={open} onClose={() => setOpen(false)}>
