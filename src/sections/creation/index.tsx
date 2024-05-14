@@ -12,9 +12,10 @@ import {
   Text,
   Title,
   Date,
+  Dropzone,
+  Checkbox,
 } from "@/components/modals";
 import useCreation from "./use-creation";
-import Dropzone from "@/components/modals/dropzone";
 
 export default function Creation() {
   const { handleDragEnd, form, setForm, modal, setModal } = useCreation();
@@ -89,6 +90,15 @@ export default function Creation() {
       {modal?.upload && (
         <Dropzone
           open={modal?.upload}
+          setOpen={setModal}
+          form={form}
+          setForm={setForm}
+        />
+      )}
+
+      {modal?.checkbox && (
+        <Checkbox
+          open={modal?.checkbox}
           setOpen={setModal}
           form={form}
           setForm={setForm}

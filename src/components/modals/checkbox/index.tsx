@@ -11,10 +11,10 @@ import {
   RHFCheckbox,
   RHFTextField,
 } from "@/components/react-hook-form";
-import useDate from "./use-data";
+import useCheckbox from "./use-checkbox";
 
-export default function Date({ open, setOpen, form, setForm }: any) {
-  const { methods, handleSubmit, onSubmit } = useDate({
+export default function Checkbox({ open, setOpen, form, setForm }: any) {
+  const { methods, handleSubmit, onSubmit } = useCheckbox({
     setOpen,
     setForm,
     form,
