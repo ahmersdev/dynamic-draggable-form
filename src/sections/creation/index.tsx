@@ -14,6 +14,7 @@ import {
   Date,
 } from "@/components/modals";
 import useCreation from "./use-creation";
+import Dropzone from "@/components/modals/dropzone";
 
 export default function Creation() {
   const { handleDragEnd, form, setForm, modal, setModal } = useCreation();
@@ -79,6 +80,15 @@ export default function Creation() {
       {modal?.date && (
         <Date
           open={modal?.date}
+          setOpen={setModal}
+          form={form}
+          setForm={setForm}
+        />
+      )}
+
+      {modal?.upload && (
+        <Dropzone
+          open={modal?.upload}
           setOpen={setModal}
           form={form}
           setForm={setForm}
