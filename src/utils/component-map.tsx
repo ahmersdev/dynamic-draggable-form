@@ -1,4 +1,5 @@
 import {
+  RHFAutocomplete,
   RHFCheckbox,
   RHFDatePicker,
   RHFDropZone,
@@ -18,4 +19,5 @@ export const componentMap: any = {
   RHFDatePicker: RHFDatePicker,
   RHFDropZone: RHFDropZone,
   RHFCheckbox: RHFCheckbox,
+  RHFAutocomplete: RHFAutocomplete,
 };

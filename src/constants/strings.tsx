@@ -11,4 +11,5 @@ export const RHF_COMPONENTS = {
   RHF_DATE_PICKER: "RHFDatePicker",
   RHF_DROP_ZONE: "RHFDropZone",
   RHF_CHECKBOX: "RHFCheckbox",
+  RHF_AUTO_COMPLETE: "RHFAutocomplete",
 };

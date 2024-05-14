@@ -15,16 +15,25 @@ export default function useSubmission() {
   // Validation Schema Creation
   const formSchema: any = form
     ?.map((item: any) => {
-      const schema =
-        item?.component === RHF_COMPONENTS.RHF_MULTI_CHECKBOX
-          ? Yup?.array()?.min(1, "At least 1 Required")
-          : item?.component === RHF_COMPONENTS.RHF_DATE_PICKER
-          ? Yup?.date()?.nullable()
-          : item?.component === RHF_COMPONENTS.RHF_DROP_ZONE
-          ? Yup?.mixed()?.nullable()
-          : item?.component === RHF_COMPONENTS.RHF_CHECKBOX
-          ? Yup?.boolean()?.oneOf([true], "Required")
-          : Yup?.string();
+      let schema;
+
+      if (item?.component === RHF_COMPONENTS.RHF_MULTI_CHECKBOX) {
+        schema = Yup?.array()?.min(1, "At least 1 Required");
+      } else if (item?.component === RHF_COMPONENTS.RHF_DATE_PICKER) {
+        schema = Yup?.date()?.nullable();
+      } else if (item?.component === RHF_COMPONENTS.RHF_DROP_ZONE) {
+        schema = Yup?.mixed()?.nullable();
+      } else if (item?.component === RHF_COMPONENTS.RHF_CHECKBOX) {
+        schema = Yup?.boolean()?.oneOf([true], "Required");
+      } else if (
+        item?.component === RHF_COMPONENTS.RHF_AUTO_COMPLETE &&
+        item?.componentProps?.multiple
+      ) {
+        schema = Yup?.array()?.min(1, "At least 1 Required");
+      } else {
+        schema = Yup?.string();
+      }
+
       return item?.componentProps?.required
         ? {
             [item?.componentProps?.name]: schema?.required(
@@ -54,6 +63,11 @@ export default function useSubmission() {
         initialValue = null;
       } else if (item?.component === RHF_COMPONENTS.RHF_CHECKBOX) {
         initialValue = false;
+      } else if (
+        item?.component === RHF_COMPONENTS.RHF_AUTO_COMPLETE &&
+        item?.componentProps?.multiple
+      ) {
+        initialValue = [];
       } else {
         initialValue = "";
       }
