@@ -23,7 +23,7 @@ export default function Date({ open, setOpen, form, setForm }: any) {
   return (
     <Dialog open={open} onClose={() => setOpen(false)}>
       <DialogTitle color={"primary.main"} variant={"h3"}>
-        Field Properties
+        Date Field Properties
       </DialogTitle>
 
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -33,18 +33,14 @@ export default function Date({ open, setOpen, form, setForm }: any) {
               <RHFTextField
                 name={"name"}
                 label={"Enter Field Name"}
-                placeholder={"Title"}
+                placeholder={"Name"}
                 size={"small"}
                 required
               />
             </Grid>
 
             <Grid item xs={12}>
-              <RHFCheckbox
-                name={"required"}
-                label={"Is Field Mandatory"}
-                size={"small"}
-              />
+              <RHFCheckbox name={"required"} label={"Is Field Mandatory"} />
             </Grid>
           </Grid>
         </DialogContent>

@@ -23,7 +23,7 @@ export default function MultiCheckbox({ open, setOpen, form, setForm }: any) {
   return (
     <Dialog open={open} onClose={() => setOpen(false)}>
       <DialogTitle color={"primary.main"} variant={"h3"}>
-        Field Properties
+        Multi Checkbox Field Properties
       </DialogTitle>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <DialogContent style={{ paddingTop: 0 }}>
@@ -32,7 +32,7 @@ export default function MultiCheckbox({ open, setOpen, form, setForm }: any) {
               <RHFTextField
                 name={"name"}
                 label={"Enter Field Name"}
-                placeholder={"Title"}
+                placeholder={"Name"}
                 size={"small"}
                 required
               />
@@ -53,6 +53,7 @@ export default function MultiCheckbox({ open, setOpen, form, setForm }: any) {
                 <RHFTextField
                   name={`options[${countIndex}].label`}
                   label={`Option - ${countIndex + 1}`}
+                  placeholder={`${countIndex + 1}`}
                   size={"small"}
                   required
                 />
@@ -60,11 +61,7 @@ export default function MultiCheckbox({ open, setOpen, form, setForm }: any) {
             ))}
 
             <Grid item xs={12}>
-              <RHFCheckbox
-                name={"required"}
-                label={"Is Field Mandatory"}
-                size={"small"}
-              />
+              <RHFCheckbox name={"required"} label={"Is Field Mandatory"} />
             </Grid>
           </Grid>
         </DialogContent>

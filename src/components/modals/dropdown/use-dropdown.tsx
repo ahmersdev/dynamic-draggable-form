@@ -1,6 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useFieldArray, useForm } from "react-hook-form";
-import { useEffect } from "react";
 import { generateUniqueId } from "@/utils/generate-unique-id";
 import { validationSchema, defaultValues } from "./dropdown.data";
 
@@ -10,34 +9,22 @@ export default function useDropdown({ setOpen, setForm, form }: any) {
     defaultValues,
   });
 
-  const { handleSubmit, watch, control } = methods;
+  const { handleSubmit, control } = methods;
 
   const { fields, append, remove } = useFieldArray({
     control,
     name: "options",
   });
 
-  const count = watch("count");
+  const addOption = () => {
+    append({ label: "" });
+  };
 
-  useEffect(() => {
-    const diff = count - fields?.length;
-
-    const makeChanges = () => {
-      if (diff > 0) {
-        for (let i = 0; i < diff; i++) {
-          append({ label: "" });
-        }
-      } else if (diff < 0) {
-        for (let i = 0; i < -diff; i++) {
-          remove(fields?.length - 1);
-        }
-      }
-    };
-
-    const timeoutId = setTimeout(makeChanges, 500);
-
-    return () => clearTimeout(timeoutId);
-  }, [count, fields, append, remove]);
+  const removeOption = (index: any) => {
+    if (fields?.length > 1) {
+      remove(index);
+    }
+  };
 
   const onSubmit = (data: any) => {
     setOpen(false);
@@ -59,5 +46,5 @@ export default function useDropdown({ setOpen, setForm, form }: any) {
     ]);
   };
 
-  return { methods, handleSubmit, onSubmit, fields };
+  return { methods, handleSubmit, onSubmit, fields, addOption, removeOption };
 }

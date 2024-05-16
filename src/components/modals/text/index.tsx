@@ -26,7 +26,7 @@ export default function Text({ open, setOpen, form, setForm }: any) {
   return (
     <Dialog open={open} onClose={() => setOpen(false)}>
       <DialogTitle color={"primary.main"} variant={"h3"}>
-        Field Properties
+        Text Field Properties
       </DialogTitle>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <DialogContent style={{ paddingTop: 0 }}>
@@ -35,7 +35,7 @@ export default function Text({ open, setOpen, form, setForm }: any) {
               <RHFTextField
                 name={"name"}
                 label={"Enter Field Name"}
-                placeholder={"Title"}
+                placeholder={"Name"}
                 size={"small"}
                 required
               />
@@ -54,7 +54,7 @@ export default function Text({ open, setOpen, form, setForm }: any) {
               <RHFAutocomplete
                 name={"type"}
                 label={"Select Field Type"}
-                placeholder={"Placeholder"}
+                placeholder={"Type"}
                 size={"small"}
                 options={typeDropDown}
                 required
@@ -66,18 +66,14 @@ export default function Text({ open, setOpen, form, setForm }: any) {
                 <RHFTextField
                   name={"lineCount"}
                   label={"Enter Line Count"}
-                  placeholder={"Placeholder"}
+                  placeholder={"Count"}
                   size={"small"}
                 />
               </Grid>
             )}
 
             <Grid item xs={12}>
-              <RHFCheckbox
-                name={"required"}
-                label={"Is Field Mandatory"}
-                size={"small"}
-              />
+              <RHFCheckbox name={"required"} label={"Is Field Mandatory"} />
             </Grid>
           </Grid>
         </DialogContent>
