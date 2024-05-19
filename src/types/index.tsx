@@ -1,4 +1,4 @@
-export type ColorPreset = "blue" | "green" | "indigo" | "purple";
+export type ColorPreset = "blue" | "green" | "indigo" | "yellow";
 
 export type Contrast = "normal" | "high";
 

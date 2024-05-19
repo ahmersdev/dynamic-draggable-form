@@ -7,7 +7,7 @@ export const defaultSettings: Settings = {
   direction: "ltr",
   layout: "vertical",
   responsiveFontSizes: false,
-  colorPreset: "purple",
+  colorPreset: "yellow",
   contrast: "normal",
   navColor: "evident",
   paletteMode: "dark",

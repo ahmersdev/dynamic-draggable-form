@@ -1,4 +1,4 @@
-import { blue, green, indigo, purple } from "@/theme";
+import { blue, green, indigo, yellow } from "@/theme";
 import { ColorPreset } from "@/types";
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
@@ -38,9 +38,9 @@ export function OptionsColorPreset(
       color: indigo.main,
     },
     {
-      label: "Purple",
-      value: "purple",
-      color: purple.main,
+      label: "Yellow",
+      value: "yellow",
+      color: yellow.main,
     },
   ];
 
