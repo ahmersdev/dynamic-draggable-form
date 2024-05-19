@@ -23,7 +23,7 @@ export const mainStyles = (href: any, pathName: any, theme: any) => {
     }`,
     color: `${
       pathName === href
-        ? theme?.palette?.grey?.[100]
+        ? theme?.palette?.primary?.[100]
         : theme?.palette?.secondary?.[400]
     }`,
     padding: "10px 16px",

@@ -1,7 +1,6 @@
 import { COOKIES_KEYS, PREVIEW_FORM } from "@/constants/strings";
 import Cookies from "js-cookie";
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { Box, Link } from "@mui/material";
 
 export default function usePreview() {
@@ -23,14 +22,15 @@ export default function usePreview() {
           ? value.path
           : `/${value.path}`;
         return (
-          <Image
-            src={imagePath}
-            alt="Preview"
-            width={500}
-            height={300}
-            layout="responsive"
-            objectFit="contain"
-          />
+          <>{imagePath}</>
+          // <Image
+          //   src={imagePath}
+          //   alt="Preview"
+          //   width={500}
+          //   height={300}
+          //   layout="responsive"
+          //   objectFit="contain"
+          // />
         );
       } else {
         return JSON.stringify(value);

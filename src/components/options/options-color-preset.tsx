@@ -23,14 +23,14 @@ export function OptionsColorPreset(
 
   const options: Option[] = [
     {
-      label: "Green",
-      value: "green",
-      color: green.main,
-    },
-    {
       label: "Blue",
       value: "blue",
       color: blue.main,
+    },
+    {
+      label: "Green",
+      value: "green",
+      color: green.main,
     },
     {
       label: "Indigo",

@@ -102,7 +102,7 @@ export function SettingsDrawer(props: SettingsDrawerProps): JSX.Element {
                   //   display: "none",
                   // }),
                   ...(values?.paletteMode === "dark" &&
-                    values?.colorPreset === "yellow" && {
+                    values?.colorPreset === "blue" && {
                       display: "none",
                     }),
                 },
