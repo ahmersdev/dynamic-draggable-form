@@ -31,3 +31,9 @@ export const NOTISTACK_VARIANTS: {
   WARNING: "warning",
   INFO: "info",
 };
+
+export const PREVIEW_FORM = {
+  OBJECT: "object",
+  BOOLEAN: "boolean",
+  STRING: "string",
+};
