@@ -1,15 +1,16 @@
-import { enqueueSnackbar } from "notistack";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { RHF_COMPONENTS } from "@/constants/strings";
+import { COOKIES_KEYS, RHF_COMPONENTS } from "@/constants/strings";
+import Cookies from "js-cookie";
+import { successSnackbar } from "@/utils/snackbar";
 
 export default function useSubmission() {
   const [form, setForm] = useState<any[]>([]);
 
   useEffect(() => {
-    setForm(JSON.parse(localStorage?.getItem("form") || "[]"));
+    setForm(JSON.parse(Cookies?.get(COOKIES_KEYS.FORM_STORAGE_KEY) || "[]"));
   }, []);
 
   // Validation Schema Creation
@@ -79,10 +80,8 @@ export default function useSubmission() {
   const { handleSubmit } = methods;
 
   const onSubmit = (data: any) => {
-    enqueueSnackbar("Form Submitted Successfully", {
-      variant: "success",
-    });
-    console.log(data);
+    successSnackbar("Form Submitted Successfully!");
+    Cookies.set(COOKIES_KEYS.FORM_SUBMISSION_STORAGE_KEY, JSON.stringify(data));
   };
 
   return { methods, handleSubmit, onSubmit, form };

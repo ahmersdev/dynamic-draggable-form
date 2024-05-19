@@ -4,12 +4,12 @@ import {
   ListItem,
   ListItemButton,
   ListItemIcon,
-  Typography,
   useTheme,
 } from "@mui/material";
 import Link from "next/link";
 import { mainRoutesArray, mainStyles } from "./navbar.data";
 import { usePathname } from "next/navigation";
+import { Logo } from "@/assets";
 
 const Navbar = () => {
   const pathName = usePathname();
@@ -29,9 +29,7 @@ const Navbar = () => {
           justifyContent: "center",
         }}
       >
-        <Typography variant={"h2"} color={"primary.main"} textAlign={"center"}>
-          Dynamic Forms
-        </Typography>
+        <Logo fill={theme.palette.primary.main} />
       </Link>
 
       <Box

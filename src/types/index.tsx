@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type ColorPreset = "blue" | "green" | "indigo" | "yellow";
 
 export type Contrast = "normal" | "high";
@@ -49,3 +51,8 @@ export type LoaderPushStateInput = [
   unused: string,
   url?: string | URL | undefined
 ];
+
+export interface LayoutProps {
+  children: ReactNode;
+  settings?: Settings;
+}

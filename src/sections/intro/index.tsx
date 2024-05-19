@@ -1,7 +1,6 @@
 "use client";
 
 import { Box, Button, Grid, Typography } from "@mui/material";
-import { enqueueSnackbar } from "notistack";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -17,6 +16,7 @@ import {
   RHFAutocomplete,
 } from "@/components/react-hook-form";
 import { pxToRem } from "@/utils/get-font-value";
+import { successSnackbar } from "@/utils/snackbar";
 
 const workloadDataArray = [
   {
@@ -162,9 +162,7 @@ export default function Intro() {
   const { handleSubmit } = methods;
 
   const onSubmit = async (data: any) => {
-    enqueueSnackbar("Form Submitted Successfully", {
-      variant: "success",
-    });
+    successSnackbar("Form Submitted Successfully");
     console.log(data);
   };
 

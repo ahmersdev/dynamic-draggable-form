@@ -1,10 +1,8 @@
 "use client";
 
 import { SettingsProvider } from "@/contexts/settings-provider";
-import { Settings } from "@/types";
-import { ReactNode } from "react";
+import { LayoutProps } from "@/types";
 import { NextAppDirEmotionCacheProvider } from "tss-react/next";
-import Cookies from "js-cookie";
 import { SettingsConsumer } from "@/contexts/settings-consumer";
 import type { Theme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/material/styles";
@@ -16,31 +14,7 @@ import { SettingsDrawer } from "@/components/settings-drawer";
 import { GlobalStyles } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-
-const SETTINGS_STORAGE_KEY = "app.settings";
-
-const resetSettings = (): void => {
-  try {
-    Cookies.remove(SETTINGS_STORAGE_KEY);
-    // window.location.reload();
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-const updateSettings = (settings: Settings): void => {
-  try {
-    Cookies.set(SETTINGS_STORAGE_KEY, JSON.stringify(settings));
-    // window.location.reload();
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-interface LayoutProps {
-  children: ReactNode;
-  settings?: Settings;
-}
+import { resetSettings, updateSettings } from "@/utils/root-theme";
 
 export default function RootTheme(props: LayoutProps) {
   const { children, settings } = props;

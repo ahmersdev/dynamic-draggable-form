@@ -5,6 +5,7 @@ import Loader from "@/components/loader";
 import RootTheme from "@/layout/root-theme";
 import { Settings } from "@/types";
 import { cookies } from "next/headers";
+import { COOKIES_KEYS } from "@/constants/strings";
 
 const mulish = Mulish({ subsets: ["latin"] });
 
@@ -13,16 +14,14 @@ export const metadata: Metadata = {
   description: "Dynamic Draggable Form",
 };
 
-const SETTINGS_STORAGE_KEY = "app.settings";
-
 const restoreSettings = (): Settings | undefined => {
   const cookieList = cookies();
 
   let value: Settings | undefined;
 
-  if (cookieList.has(SETTINGS_STORAGE_KEY)) {
+  if (cookieList.has(COOKIES_KEYS.SETTINGS_STORAGE_KEY)) {
     try {
-      const restored = cookieList.get(SETTINGS_STORAGE_KEY);
+      const restored = cookieList.get(COOKIES_KEYS.SETTINGS_STORAGE_KEY);
 
       if (restored) {
         value = JSON.parse(restored.value) as Settings | undefined;

@@ -1,7 +1,7 @@
 import { pxToRem, responsiveFontSizes } from "@/utils/get-font-value";
 import type { TypographyOptions } from "@mui/material/styles/createTypography";
 
-const FONT_FAMILY = "__Mulish_2f1d39";
+const FONT_FAMILY = "inherit";
 
 export const createTypography = (): TypographyOptions => {
   return {

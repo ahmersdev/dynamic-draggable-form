@@ -5,13 +5,13 @@ import {
   ListItem,
   ListItemButton,
   ListItemIcon,
-  Typography,
   useTheme,
 } from "@mui/material";
 import Link from "next/link";
 import CloseIcon from "@mui/icons-material/Close";
 import { mainRoutesArray, mainStyles } from "./drawer-navbar.data";
 import { usePathname } from "next/navigation";
+import { Logo } from "@/assets";
 
 const DrawerNavbar = ({ open = false, setOpen }: any) => {
   const theme: any = useTheme();
@@ -36,9 +36,7 @@ const DrawerNavbar = ({ open = false, setOpen }: any) => {
         justifyContent={"space-between"}
       >
         <Link href={"/"} onClick={() => setOpen(false)}>
-          <Typography variant={"h2"} color={"primary.main"}>
-            Dynamic Forms
-          </Typography>
+          <Logo fill={theme.palette.primary.main} width={"180"} />
         </Link>
         <CloseIcon
           sx={{ cursor: "pointer", color: "primary.main" }}

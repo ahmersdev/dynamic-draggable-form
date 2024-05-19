@@ -5,10 +5,14 @@ import { FormProvider } from "@/components/react-hook-form";
 import { useForm } from "react-hook-form";
 import React, { createElement } from "react";
 import { componentMap } from "@/utils/component-map";
+import Cookies from "js-cookie";
+import { COOKIES_KEYS } from "@/constants/strings";
+import { successSnackbar } from "@/utils/snackbar";
 
 export default function DroppableFields({ form }: any) {
   const handleFormCreation = () => {
-    localStorage?.setItem("form", JSON.stringify(form));
+    Cookies.set(COOKIES_KEYS.FORM_STORAGE_KEY, JSON.stringify(form));
+    successSnackbar("Form Created Successfully");
   };
 
   const methods: any = useForm({});
@@ -29,7 +33,7 @@ export default function DroppableFields({ form }: any) {
               color={"primary.main"}
               textAlign={"center"}
             >
-              Start Building Brilliance
+              START BUILDING BRILLIANCE
             </Typography>
           ) : (
             form?.map((item: any, index: number) => (
