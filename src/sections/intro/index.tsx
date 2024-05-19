@@ -84,7 +84,7 @@ export default function Intro() {
       <Typography variant={"h4"}>3. Form Creation Page</Typography>
       <Typography variant={"h6"}>
         On the Form Creation Page, you can build your form by dragging and
-        dropping the desired fields into place. Customize each field's
+        dropping the desired fields into place. Customize each field&apos;s
         properties according to your needs. Once you have configured your form,
         it is saved in cookies for easy retrieval and editing later.
       </Typography>
