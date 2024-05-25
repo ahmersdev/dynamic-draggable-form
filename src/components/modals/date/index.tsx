@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import {
   FormProvider,
+  RHFAutocomplete,
   RHFCheckbox,
   RHFTextField,
 } from "@/components/react-hook-form";
@@ -36,6 +37,21 @@ export default function Date({ open, setOpen, form, setForm }: any) {
                 placeholder={"Name"}
                 size={"small"}
                 required
+              />
+            </Grid>
+
+            <Grid item xs={12}>
+              <RHFAutocomplete
+                name={"dateFormat"}
+                label={"Date Format"}
+                placeholder={"Select"}
+                size={"small"}
+                options={[
+                  { label: "MM/DD/YYYY", value: "MM/dd/yyyy" },
+                  { label: "DD/MM/YYYY", value: "dd/MM/yyyy" },
+                  { label: "YYYY/MM/DD", value: "yyyy/MM/dd" },
+                ]}
+                getOptionLabel={(option: any) => option?.label}
               />
             </Grid>
 

@@ -7,6 +7,7 @@ export default function RHFDatePicker({
   name,
   label,
   required,
+  format = "MM/dd/yyyy",
   ...other
 }: any) {
   const { control } = useFormContext();
@@ -39,6 +40,7 @@ export default function RHFDatePicker({
           <DatePicker
             {...field}
             {...other}
+            format={format}
             slots={{
               openPickerIcon: CalendarMonthIcon,
             }}

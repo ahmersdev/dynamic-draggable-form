@@ -8,11 +8,13 @@ export default function useDate({ setOpen, setForm, form }: any) {
     resolver: yupResolver(
       Yup?.object()?.shape({
         name: Yup?.string()?.trim()?.required("Name is Required"),
+        dateFormat: Yup?.mixed()?.nullable(),
         required: Yup?.boolean()?.nullable(),
       })
     ),
     defaultValues: {
       name: "",
+      dateFormat: null,
       required: false,
     },
   });
@@ -30,6 +32,9 @@ export default function useDate({ setOpen, setForm, form }: any) {
           name: data?.name?.replace(/\s/g, ""),
           label: data?.name,
           required: data?.required,
+          format: data?.dateFormat?.value,
+          fullWidth: true,
+          textFieldProps: { readOnly: true },
         },
         component: "RHFDatePicker",
       },
