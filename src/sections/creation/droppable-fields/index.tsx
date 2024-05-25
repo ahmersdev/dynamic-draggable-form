@@ -25,6 +25,7 @@ export default function DroppableFields({ form }: any) {
           borderRadius={2}
           p={2}
           ref={provided.innerRef}
+          height={"100%"}
           {...provided.droppableProps}
         >
           {!!!form?.length ? (
