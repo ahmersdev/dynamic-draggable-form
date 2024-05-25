@@ -1,7 +1,7 @@
 import { useFormContext, Controller } from "react-hook-form";
 import { Box } from "@mui/material";
-import ReactQuillEditor from "../react-quill-editor";
 import { FormLabel, Typography, useTheme } from "@mui/material";
+import ReactQuillEditor from "@/components/react-quill-editor";
 
 export default function RHFEditor({ name, required, disabled, ...other }: any) {
   const { control } = useFormContext();
@@ -29,7 +29,7 @@ export default function RHFEditor({ name, required, disabled, ...other }: any) {
               )}
             </FormLabel>
           )}
-          
+
           <ReactQuillEditor
             id={name}
             name={name}

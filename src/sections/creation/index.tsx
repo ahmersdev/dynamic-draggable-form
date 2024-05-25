@@ -14,9 +14,9 @@ import {
   Date,
   Dropzone,
   Checkbox,
+  Dropdown,
 } from "@/components/modals";
 import useCreation from "./use-creation";
-import Dropdown from "@/components/modals/dropdown";
 
 export default function Creation() {
   const { handleDragEnd, form, setForm, modal, setModal } = useCreation();
