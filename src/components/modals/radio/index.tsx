@@ -13,11 +13,12 @@ import {
 } from "@/components/react-hook-form";
 import useRadio from "./use-radio";
 
-export default function Radio({ open, setOpen, form, setForm }: any) {
+export default function Radio({ open, setOpen, form, setForm, editId }: any) {
   const { methods, handleSubmit, onSubmit, fields } = useRadio({
     setOpen,
     setForm,
     form,
+    editId,
   });
 
   return (

@@ -32,7 +32,7 @@ export default function useTitle({ setOpen, setForm, form, editId }: any) {
 
   useEffect(() => {
     reset(initialValues);
-  }, [initialValues, methods, reset]);
+  }, [initialValues, reset]);
 
   const onSubmit = (data: any) => {
     setOpen(false);

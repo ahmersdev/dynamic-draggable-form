@@ -13,11 +13,12 @@ import {
 } from "@/components/react-hook-form";
 import useEditor from "./use-editor";
 
-export default function Editor({ open, setOpen, form, setForm }: any) {
+export default function Editor({ open, setOpen, form, setForm, editId }: any) {
   const { methods, handleSubmit, onSubmit } = useEditor({
     setOpen,
     setForm,
     form,
+    editId,
   });
 
   return (

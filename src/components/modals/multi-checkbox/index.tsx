@@ -13,11 +13,18 @@ import {
 } from "@/components/react-hook-form";
 import useMultiCheckbox from "./use-multi-checkbox";
 
-export default function MultiCheckbox({ open, setOpen, form, setForm }: any) {
+export default function MultiCheckbox({
+  open,
+  setOpen,
+  form,
+  setForm,
+  editId,
+}: any) {
   const { methods, handleSubmit, onSubmit, fields } = useMultiCheckbox({
     setOpen,
     setForm,
     form,
+    editId,
   });
 
   return (

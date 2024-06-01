@@ -1,16 +1,36 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useFieldArray, useForm } from "react-hook-form";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { generateUniqueId } from "@/utils/generate-unique-id";
 import { validationSchema, defaultValues } from "./radio.data";
 
-export default function useRadio({ setOpen, setForm, form }: any) {
+export default function useRadio({ setOpen, setForm, form, editId }: any) {
+  const [initialValues, setInitialValues] = useState(defaultValues);
+
+  useEffect(() => {
+    if (editId) {
+      const itemToEdit = form?.find((item: any) => item?.id === editId);
+      if (itemToEdit) {
+        const { label, options, required } = itemToEdit?.componentProps;
+        setInitialValues({
+          name: label,
+          options,
+          required,
+        });
+      }
+    }
+  }, [editId, form]);
+
   const methods: any = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues,
   });
 
-  const { handleSubmit, watch, control, setValue } = methods;
+  const { handleSubmit, watch, control, setValue, reset } = methods;
+
+  useEffect(() => {
+    reset(initialValues);
+  }, [initialValues, reset]);
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -45,20 +65,38 @@ export default function useRadio({ setOpen, setForm, form }: any) {
       setValue(`options[${index}].value`, label);
     });
     setOpen(false);
-    const uniqueId = generateUniqueId();
-    setForm([
-      ...form,
-      {
-        id: uniqueId,
-        componentProps: {
-          name: data?.name?.replace(/\s/g, ""),
-          label: data?.name,
-          required: data?.required,
-          options: data?.options,
+    if (editId) {
+      setForm((prevForm: any) =>
+        prevForm.map((item: any) =>
+          item?.id === editId
+            ? {
+                ...item,
+                componentProps: {
+                  name: data?.name?.replace(/\s/g, ""),
+                  label: data?.name,
+                  required: data?.required,
+                  options: data?.options,
+                },
+              }
+            : item
+        )
+      );
+    } else {
+      const uniqueId = generateUniqueId();
+      setForm([
+        ...form,
+        {
+          id: uniqueId,
+          componentProps: {
+            name: data?.name?.replace(/\s/g, ""),
+            label: data?.name,
+            required: data?.required,
+            options: data?.options,
+          },
+          component: "RHFRadioGroup",
         },
-        component: "RHFRadioGroup",
-      },
-    ]);
+      ]);
+    }
   };
 
   return { methods, handleSubmit, onSubmit, fields };
