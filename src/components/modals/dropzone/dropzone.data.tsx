@@ -27,7 +27,7 @@ export const defaultValues: any = {
   required: false,
 };
 
-const fileTypeMapping: any = {
+export const fileTypeMapping: any = {
   PNG: {
     "image/png": [".png", ".PNG"],
   },
@@ -54,20 +54,4 @@ const fileTypeMapping: any = {
   CSV: {
     "text/csv": [".csv"],
   },
-};
-
-export const transformAccept = (selectedFileTypes: any) => {
-  return selectedFileTypes.reduce((acc: any, fileType: any) => {
-    const mimeTypes = fileTypeMapping[fileType];
-    if (mimeTypes) {
-      Object.keys(mimeTypes).forEach((mimeType) => {
-        if (!acc[mimeType]) {
-          acc[mimeType] = mimeTypes[mimeType];
-        } else {
-          acc[mimeType] = [...acc[mimeType], ...mimeTypes[mimeType]];
-        }
-      });
-    }
-    return acc;
-  }, {});
 };

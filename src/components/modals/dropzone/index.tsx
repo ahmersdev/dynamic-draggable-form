@@ -15,11 +15,18 @@ import {
 import useDropzone from "./use-dropzone";
 import { fileTypeAcceptOptions } from "./dropzone.data";
 
-export default function Dropzone({ open, setOpen, form, setForm }: any) {
+export default function Dropzone({
+  open,
+  setOpen,
+  form,
+  setForm,
+  editId,
+}: any) {
   const { methods, handleSubmit, onSubmit } = useDropzone({
     setOpen,
     setForm,
     form,
+    editId,
   });
 
   return (
