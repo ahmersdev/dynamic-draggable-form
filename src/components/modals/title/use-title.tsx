@@ -25,7 +25,7 @@ export default function useTitle({ setOpen, setForm, form, editId }: any) {
         title: Yup?.string()?.trim()?.required("Title is Required"),
       })
     ),
-    defaultValues: { title: "" },
+    defaultValues: initialValues,
   });
 
   const { handleSubmit, reset } = methods;

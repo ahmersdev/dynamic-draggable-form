@@ -13,12 +13,14 @@ import {
   RHFTextField,
 } from "@/components/react-hook-form";
 import useDate from "./use-data";
+import { DateFormatOptions } from "./date.data";
 
-export default function Date({ open, setOpen, form, setForm }: any) {
+export default function Date({ open, setOpen, form, setForm, editId }: any) {
   const { methods, handleSubmit, onSubmit } = useDate({
     setOpen,
     setForm,
     form,
+    editId,
   });
 
   return (
@@ -46,11 +48,7 @@ export default function Date({ open, setOpen, form, setForm }: any) {
                 label={"Date Format"}
                 placeholder={"Select"}
                 size={"small"}
-                options={[
-                  { label: "MM/DD/YYYY", value: "MM/dd/yyyy" },
-                  { label: "DD/MM/YYYY", value: "dd/MM/yyyy" },
-                  { label: "YYYY/MM/DD", value: "yyyy/MM/dd" },
-                ]}
+                options={DateFormatOptions}
                 getOptionLabel={(option: any) => option?.label}
               />
             </Grid>

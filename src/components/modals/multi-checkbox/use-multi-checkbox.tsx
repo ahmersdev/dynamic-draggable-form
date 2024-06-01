@@ -28,7 +28,7 @@ export default function useMultiCheckbox({
 
   const methods: any = useForm({
     resolver: yupResolver(validationSchema),
-    defaultValues,
+    defaultValues: initialValues,
   });
 
   const { handleSubmit, watch, control, setValue, reset } = methods;

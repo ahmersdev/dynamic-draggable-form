@@ -32,7 +32,7 @@ export default function useText({ setOpen, setForm, form, editId }: any) {
 
   const methods: any = useForm({
     resolver: yupResolver(validationSchema),
-    defaultValues,
+    defaultValues: initialValues,
   });
 
   const { handleSubmit, watch, reset } = methods;

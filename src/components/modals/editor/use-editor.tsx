@@ -23,7 +23,7 @@ export default function useEditor({ setOpen, setForm, form, editId }: any) {
 
   const methods: any = useForm({
     resolver: yupResolver(validationSchema),
-    defaultValues,
+    defaultValues: initialValues,
   });
 
   const { handleSubmit, reset } = methods;

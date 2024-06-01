@@ -34,6 +34,7 @@ export default function useCreation() {
       );
 
       setModal(getModalState(draggedItem));
+      setEditId(null);
     }
   };
 
