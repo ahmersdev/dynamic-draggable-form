@@ -9,11 +9,12 @@ import {
 import { FormProvider, RHFTextField } from "@/components/react-hook-form";
 import useTitle from "./use-title";
 
-export default function Title({ open, setOpen, form, setForm }: any) {
+export default function Title({ open, setOpen, form, setForm, editId }: any) {
   const { methods, handleSubmit, onSubmit } = useTitle({
     setOpen,
     setForm,
     form,
+    editId,
   });
 
   return (

@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, IconButton, Typography } from "@mui/material";
 import { Draggable } from "react-beautiful-dnd";
 import { StrictModeDroppable as Droppable } from "@/components/strict-mode-droppable";
 import { FormProvider } from "@/components/react-hook-form";
@@ -8,14 +8,22 @@ import { componentMap } from "@/utils/component-map";
 import Cookies from "js-cookie";
 import { COOKIES_KEYS } from "@/constants/strings";
 import { successSnackbar } from "@/utils/snackbar";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
-export default function DroppableFields({ form }: any) {
+export default function DroppableFields({ form, setForm, handleEdit }: any) {
   const handleFormCreation = () => {
     Cookies.set(COOKIES_KEYS.FORM_STORAGE_KEY, JSON.stringify(form));
     successSnackbar("Form Created Successfully");
   };
 
   const methods: any = useForm({});
+
+  const handleDelete = (id: any) => {
+    setForm((prevForm: any) =>
+      prevForm?.filter((item: any) => item?.id !== id)
+    );
+  };
 
   return (
     <Droppable droppableId={"droppable"}>
@@ -45,8 +53,11 @@ export default function DroppableFields({ form }: any) {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     my={1}
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    alignItems={"flex-end"}
                   >
-                    <FormProvider methods={methods}>
+                    <FormProvider methods={methods} style={{ width: "100%" }}>
                       {componentMap[item?.component] &&
                         createElement(
                           componentMap[item?.component],
@@ -58,6 +69,20 @@ export default function DroppableFields({ form }: any) {
                           item?.heading
                         )}
                     </FormProvider>
+                    <Box display={"flex"}>
+                      <IconButton
+                        sx={{ color: "primary.light" }}
+                        onClick={() => handleEdit(item?.id)}
+                      >
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton
+                        sx={{ color: "error.600" }}
+                        onClick={() => handleDelete(item?.id)}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </Box>
                   </Box>
                 )}
               </Draggable>

@@ -1,39 +1,32 @@
 import { useState } from "react";
-import { fieldsList, modalInitialState } from "./creation.data";
+import {
+  componentToMatchMap,
+  fieldsList,
+  modalInitialState,
+} from "./creation.data";
 
 export default function useCreation() {
   const [form, setForm] = useState<any>([]);
   const [modal, setModal] = useState<any>(modalInitialState);
+  const [editId, setEditId] = useState<any>(null);
 
-  // Modal State Open Handler
-  const getModalState = (draggedItem: any) => {
+  const getModalState = (item: any) => {
     const newModal: any = {
-      title: false,
-      text: false,
-      editor: false,
-      radio: false,
-      multiple: false,
-      date: false,
-      upload: false,
-      checkbox: false,
-      dropdown: false,
+      ...modalInitialState,
     };
 
-    if (draggedItem?.id !== undefined) {
-      if (fieldsList[draggedItem?.id]) {
-        const itemType = fieldsList[draggedItem.id]?.title
-          ?.toLowerCase()
-          ?.replace(/\s/g, "");
-        if (newModal?.hasOwnProperty(itemType)) {
-          newModal[itemType] = true;
-        }
+    if (item?.component) {
+      const matchTypes = componentToMatchMap[item?.component];
+      newModal[matchTypes.toLowerCase().replace(/\s/g, "")] = true;
+    } else if (item?.id !== undefined) {
+      const fieldType = fieldsList?.find((field) => field?.id === item?.id);
+      if (fieldType) {
+        newModal[fieldType.title.toLowerCase().replace(/\s/g, "")] = true;
       }
     }
-
     return newModal;
   };
 
-  // Drag End Handler
   const handleDragEnd = (result: any) => {
     if (result?.destination?.droppableId === "droppable") {
       const draggedItem = fieldsList?.find(
@@ -44,11 +37,21 @@ export default function useCreation() {
     }
   };
 
+  const handleEdit = (id: string) => {
+    const itemToEdit = form?.find((item: any) => item?.id === id);
+    if (itemToEdit) {
+      setModal(getModalState(itemToEdit));
+      setEditId(id);
+    }
+  };
+
   return {
     handleDragEnd,
     form,
     setForm,
     modal,
     setModal,
+    handleEdit,
+    editId,
   };
 }

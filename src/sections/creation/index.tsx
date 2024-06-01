@@ -19,14 +19,19 @@ import {
 import useCreation from "./use-creation";
 
 export default function Creation() {
-  const { handleDragEnd, form, setForm, modal, setModal } = useCreation();
+  const { handleDragEnd, form, setForm, modal, setModal, handleEdit, editId } =
+    useCreation();
 
   return (
     <>
       <DragDropContext onDragEnd={handleDragEnd}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={8}>
-            <DroppableFields form={form} />
+            <DroppableFields
+              form={form}
+              setForm={setForm}
+              handleEdit={handleEdit}
+            />
           </Grid>
           <Grid item xs={12} md={4}>
             <DraggableFields fieldsList={fieldsList} />
@@ -40,6 +45,7 @@ export default function Creation() {
           setOpen={setModal}
           form={form}
           setForm={setForm}
+          editId={editId}
         />
       )}
 
@@ -49,6 +55,7 @@ export default function Creation() {
           setOpen={setModal}
           form={form}
           setForm={setForm}
+          editId={editId}
         />
       )}
 

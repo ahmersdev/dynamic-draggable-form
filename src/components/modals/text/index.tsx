@@ -16,11 +16,12 @@ import useText from "./use-text";
 import { typeDropDown } from "./text.data";
 import { TEXT_TYPE_DROPDOWN } from "@/constants/strings";
 
-export default function Text({ open, setOpen, form, setForm }: any) {
+export default function Text({ open, setOpen, form, setForm, editId }: any) {
   const { methods, handleSubmit, onSubmit, type } = useText({
     setOpen,
     setForm,
     form,
+    editId,
   });
 
   return (

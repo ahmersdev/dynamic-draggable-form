@@ -75,3 +75,70 @@ export const modalInitialState: any = {
   checkbox: false,
   dropdown: false,
 };
+
+export const componentToMatchMap: any = {
+  Typography: "Title",
+  RHFTextField: "Text",
+  RHFTextEditor: "Editor",
+  RHFRadioGroup: "Radio",
+  RHFMultiCheckbox: "Multiple",
+  RHFDatePicker: "Date",
+  RHFDropZone: "Upload",
+  RHFCheckbox: "Checkbox",
+  RHFAutocomplete: "Dropdown",
+};
+
+// Other method of handling
+// export const componentToMatchMap: any = {
+//   RHFDatePicker: "date",
+//   RHFAutocomplete: "dropdown",
+//   RHFMultiCheckbox: "multipleSelection",
+//   RHFTextField: ["text", "paragraphText"],
+//   RHFRadioGroup: "singleSelection",
+//   RHFDropZone: "upload",
+// };
+
+// const getModalState = (item: any) => {
+//   const newModal: any = {
+//     ...modalInitialState,
+//   };
+
+//   if (item?.component) {
+//     const matchTypes = componentToMatchMap[item?.component];
+//     if (Array?.isArray(matchTypes)) {
+//       if (item?.componentProps?.multiline) {
+//         newModal["paragraphText"] = true;
+//       } else if (matchTypes?.includes("text")) {
+//         newModal["text"] = true;
+//       }
+//     } else if (matchTypes) {
+//       newModal[matchTypes] = true;
+//     }
+//   } else if (item?.id !== undefined) {
+//     const fieldType = fieldsList?.find((field) => field?.id === item?.id);
+//     if (fieldType) {
+//       newModal[fieldType?.match] = true;
+//     }
+//   }
+//   return newModal;
+// };
+
+// Just Open handler
+// const getModalState = (draggedItem: any) => {
+//   const newModal: any = {
+//     ...modalInitialState,
+//   };
+
+//   if (draggedItem?.id !== undefined) {
+//     if (fieldsList[draggedItem?.id]) {
+//       const itemType = fieldsList[draggedItem.id]?.title
+//         ?.toLowerCase()
+//         ?.replace(/\s/g, "");
+//       if (newModal?.hasOwnProperty(itemType)) {
+//         newModal[itemType] = true;
+//       }
+//     }
+//   }
+
+//   return newModal;
+// };
