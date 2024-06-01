@@ -115,6 +115,7 @@ export default function Creation() {
           setOpen={setModal}
           form={form}
           setForm={setForm}
+          editId={editId}
         />
       )}
 
@@ -124,6 +125,7 @@ export default function Creation() {
           setOpen={setModal}
           form={form}
           setForm={setForm}
+          editId={editId}
         />
       )}
     </>

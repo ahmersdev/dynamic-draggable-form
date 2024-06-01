@@ -13,11 +13,18 @@ import {
 } from "@/components/react-hook-form";
 import useCheckbox from "./use-checkbox";
 
-export default function Checkbox({ open, setOpen, form, setForm }: any) {
+export default function Checkbox({
+  open,
+  setOpen,
+  form,
+  setForm,
+  editId,
+}: any) {
   const { methods, handleSubmit, onSubmit } = useCheckbox({
     setOpen,
     setForm,
     form,
+    editId,
   });
 
   return (

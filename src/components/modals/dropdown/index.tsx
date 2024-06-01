@@ -17,12 +17,19 @@ import useDropdown from "./use-dropdown";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import ClearIcon from "@mui/icons-material/Clear";
 
-export default function Dropdown({ open, setOpen, form, setForm }: any) {
+export default function Dropdown({
+  open,
+  setOpen,
+  form,
+  setForm,
+  editId,
+}: any) {
   const { methods, handleSubmit, onSubmit, fields, addOption, removeOption } =
     useDropdown({
       setOpen,
       setForm,
       form,
+      editId,
     });
 
   return (
