@@ -40,6 +40,7 @@ export default function useDropdown({ setOpen, setForm, form }: any) {
           placeholder: data?.placeholder,
           required: data?.required,
           options: options,
+          multiple: data?.multiple,
         },
         component: "RHFAutocomplete",
       },

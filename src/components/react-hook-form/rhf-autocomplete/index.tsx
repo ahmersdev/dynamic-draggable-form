@@ -43,7 +43,7 @@ export default function RHFAutocomplete({
             id={name}
             open={open}
             multiple={multiple}
-            value={value || null}
+            value={multiple ? value || [] : value || null}
             isOptionEqualToValue={(option, value) => option === value}
             filterSelectedOptions
             onOpen={() => {

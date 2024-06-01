@@ -26,6 +26,11 @@ export default function useSubmission() {
         schema = Yup?.mixed()?.nullable();
       } else if (item?.component === RHF_COMPONENTS.RHF_CHECKBOX) {
         schema = Yup?.boolean()?.oneOf([true], "Required");
+      } else if (
+        item?.component === RHF_COMPONENTS.RHF_AUTO_COMPLETE &&
+        item?.componentProps?.multiple
+      ) {
+        schema = Yup?.array()?.min(1, "At least 1 Required");
       } else {
         schema = Yup?.string();
       }
@@ -59,6 +64,11 @@ export default function useSubmission() {
         initialValue = null;
       } else if (item?.component === RHF_COMPONENTS.RHF_CHECKBOX) {
         initialValue = false;
+      } else if (
+        item?.component === RHF_COMPONENTS.RHF_AUTO_COMPLETE &&
+        item?.componentProps?.multiple
+      ) {
+        initialValue = [];
       } else {
         initialValue = "";
       }

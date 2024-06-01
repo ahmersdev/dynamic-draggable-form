@@ -52,6 +52,10 @@ export default function Dropdown({ open, setOpen, form, setForm }: any) {
               />
             </Grid>
 
+            <Grid item xs={12}>
+              <RHFCheckbox name={"multiple"} label={"Is Multi Select Able?"} />
+            </Grid>
+
             {fields?.map((count: any, countIndex: number) => (
               <Grid item xs={12} md={6} key={count.id}>
                 <Box display={"flex"} alignItems={"end"} gap={1}>
